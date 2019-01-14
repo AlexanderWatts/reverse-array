@@ -11,28 +11,46 @@ class ReverseArray {
      */
     public void reverseArray(int[] arr) {
         numbers = arr;
-        reverse();
+
+         //Set pointers
+         int left = 0;
+         int right = numbers.length - 1;
+
+         recursiveReverse(left, right);
+        
         //Print sorted array
         System.out.println(Arrays.toString(numbers));
     }
 
-    public void reverse() {
-
-        //Set pointers
-        int left = 0;
-        int right = numbers.length - 1;
+    /**
+     * @param l The left index
+     * @param r The right index
+     */
+    private void reverse(int l, int r) {
 
         //As long as left is less than right
         //keep swapping the integers at each index
-        while(left < right) {
+        while(l < r) {
             //Swap values
-            swap(left, right);
+            swap(l, r);
             //Move left pointer up
-            left++;
+            l++;
             //Move right pointer down
-            right--;
+            r--;
         }
 
+    }
+
+    /**
+     * Recursive reverse
+     * @param l The left index
+     * @param r The right index
+     */
+    private void recursiveReverse(int l, int r) {
+        if(l < r) {
+            swap(l, r);
+            recursiveReverse(l + 1, r - 1);
+        }
     }
 
     /**
